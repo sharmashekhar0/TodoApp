@@ -25,12 +25,12 @@ function Login() {
 					dispatch(authLogin(userData));
 					getAllTodos();
 					navigate("/");
-				} else {
-					toast("Login Failed");
 				}
+			} else {
+				toast("Login Failed");
 			}
-		} catch (err) {
-			setError(err.message);
+		} catch (error) {
+			setError(error.message);
 			console.log("Error while logging :: ", error);
 		}
 	};
