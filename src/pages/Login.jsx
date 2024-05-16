@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { login as authLogin } from "../store/authSlice";
 import service from "../appwrite/config";
 import { addAllTodos } from "../store/todoSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 function Login() {
 	const [error, setError] = useState("");
@@ -24,6 +25,8 @@ function Login() {
 					dispatch(authLogin(userData));
 					getAllTodos();
 					navigate("/");
+				} else {
+					toast("Login Failed");
 				}
 			}
 		} catch (err) {
@@ -45,6 +48,7 @@ function Login() {
 
 	return (
 		<div className="min-h-screen bg-[#121212] flex justify-center items-center">
+			<Toaster />
 			<div className="mt-20 flex w-full flex-col items-start justify-start p-6 md:w-1/2 lg:px-10">
 				<div className="w-full">
 					<h1 className="mb-2 text-5xl font-extrabold text-white">
@@ -80,7 +84,7 @@ function Login() {
 						/>
 					</div>
 					<button className="w-full bg-[#ae7aff] p-3 text-center font-bold text-black shadow-[5px_5px_0px_0px_#4f4e4e] transition-all duration-150 ease-in-out active:translate-x-[5px] active:translate-y-[5px] active:shadow-[0px_0px_0px_0px_#4f4e4e]">
-						Create Account
+						Login
 					</button>
 				</form>
 			</div>
